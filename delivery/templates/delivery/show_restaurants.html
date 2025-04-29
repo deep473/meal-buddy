@@ -6,7 +6,39 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Restaurants:</h2>
-    {{restaurantList}}
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Restaurant name</th>
+                <th>Picture</th>
+                <th>Cuisine</th>
+                <th>Rating</th>
+                <th>Operations</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%  for r in restaurantList %}
+                <tr>
+                    <td>{{ r.name }}</td>
+                    <td>
+                        <img src="{{ r.picture }}">
+                    </td>
+                    <td>{{ r.cuisine }}</td>
+                    <td>{{ r.rating }}</td>
+                    <td>
+                        <a href="open_update_restaurant">
+                            Update Restaurant Info
+                        </a>
+                        <br>
+                        <a>Delete Restaurant</a>
+                        <br>
+                        <a>Update Menu</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
 </body>
 </html>
