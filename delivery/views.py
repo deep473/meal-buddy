@@ -76,5 +76,24 @@ def open_show_restaurant(request):
     restaurantList = Restaurant.objects.all()
     return render(request, 'delivery/show_restaurants.html',{"restaurantList" : restaurantList})
 
-def open_update_restaurant(request):
-    return render(request, 'delivery/update_restaurant.html')
+def open_update_restaurant(request, restaurant_id):
+    restaurant = Restaurant.objects.get(id = restaurant_id)
+    return render(request, 'delivery/update_restaurant.html', {"restaurant" : restaurant})
+
+def update_restaurant(request, restaurant_id):
+    restaurant = Restaurant.objects.get(id = restaurant_id)
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        picture = request.POST.get('picture')
+        cuisine = request.POST.get('cuisine')
+        rating = request.POST.get('rating')
+        
+        restaurant.name = name
+        restaurant.picture = picture
+        restaurant.cuisine = cuisine
+        restaurant.rating = rating
+
+        restaurant.save()
+
+    restaurantList = Restaurant.objects.all()
+    return render(request, 'delivery/show_restaurants.html',{"restaurantList" : restaurantList})

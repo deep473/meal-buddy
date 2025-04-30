@@ -27,7 +27,7 @@
                     <td>{{ r.cuisine }}</td>
                     <td>{{ r.rating }}</td>
                     <td>
-                        <a href="open_update_restaurant">
+                        <a href="{% url 'open_update_restaurant' r.id %}">
                             Update Restaurant Info
                         </a>
                         <br>

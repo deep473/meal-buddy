@@ -6,6 +6,22 @@
     <title>Document</title>
 </head>
 <body>
-    update restaurant
+    <form action="{% url 'update_restaurant' restaurant.id %}" method="post">
+        {% csrf_token %}
+        <label>Restaurant name </label>
+        <input type="text" name="name" value="{{restaurant.name}}">
+        <br><br>
+        <label>Picture url </label>
+        <input type="text" name="picture" value="{{restaurant.picture}}">
+        <br><br>
+        <label>Cuisine </label>
+        <input type="text" name="cuisine" value="{{restaurant.cuisine}}">
+        <br><br>
+        <label>Rating</label>
+        <input type="number" name="rating" min="0" max="5" step="0.5" value="{{restaurant.rating}}">
+        <br><br>
+        <br><br>
+        <button type="submit">Update Restaurant</button>
+    </form>
 </body>
 </html>
