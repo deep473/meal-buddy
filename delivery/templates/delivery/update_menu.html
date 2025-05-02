@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- show current menu -->
+
+    <!-- add food item (form) -->
+    <h2>Add Menu Item</h2>
+    <form >
+        {% csrf_token %}
+        <label for="name">Item Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea><br><br>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" required><br><br>
+
+        <label for="is_veg">Vegetarian:</label>
+        <input type="checkbox" id="is_veg" name="is_veg"><br><br>
+
+        <label for="picture">Image URL:</label>
+        <input type="url" id="picture" name="picture"><br><br>
+
+        <button type="submit">Add Item</button>
+    </form>
+</body>
+</html>

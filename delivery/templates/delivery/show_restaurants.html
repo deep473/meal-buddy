@@ -31,9 +31,13 @@
                             Update Restaurant Info
                         </a>
                         <br>
-                        <a>Delete Restaurant</a>
+                        <a href="{% url 'delete_restaurant' r.id %}">
+                            Delete Restaurant
+                        </a>
                         <br>
-                        <a>Update Menu</a>
+                        <a href="{% url 'open_update_menu' r.id %}">
+                            Update Menu
+                        </a>
                     </td>
                 </tr>
             {% endfor %}

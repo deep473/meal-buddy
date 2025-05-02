@@ -97,3 +97,16 @@ def update_restaurant(request, restaurant_id):
 
     restaurantList = Restaurant.objects.all()
     return render(request, 'delivery/show_restaurants.html',{"restaurantList" : restaurantList})
+
+
+def delete_restaurant(request, restaurant_id):
+    restaurant = Restaurant.objects.get(id = restaurant_id)
+    restaurant.delete()
+
+    restaurantList = Restaurant.objects.all()
+    return render(request, 'delivery/show_restaurants.html',{"restaurantList" : restaurantList})
+
+def open_update_menu(request, restaurant_id):
+    restaurant = Restaurant.objects.get(id = restaurant_id)
+    
+    return render(request, 'delivery/update_menu.html',{"restaurant" : restaurant})
