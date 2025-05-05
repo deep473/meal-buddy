@@ -14,4 +14,11 @@ class Restaurant(models.Model):
     cuisine = models.CharField(max_length = 200)
     rating = models.FloatField()
     
-  
+class Item(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete = models.CASCADE, related_name = "items")
+    name = models.CharField(max_length = 20)
+    description = models.CharField(max_length = 200)
+    price = models.FloatField()
+    vegeterian = models.BooleanField(default=True)
+    picture = models.URLField(max_length = 400, default='https://www.indiafilings.com/learn/wp-content/uploads/2024/08/How-to-Start-Food-Business.jpg')
+    

@@ -110,3 +110,8 @@ def open_update_menu(request, restaurant_id):
     restaurant = Restaurant.objects.get(id = restaurant_id)
     
     return render(request, 'delivery/update_menu.html',{"restaurant" : restaurant})
+
+def update_menu(request, restaurant_id):
+    restaurant = Restaurant.objects.get(id = restaurant_id)
+    
+    return HttpResponse("received")
