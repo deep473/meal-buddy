@@ -120,7 +120,7 @@ def update_menu(request, restaurant_id):
         name = request.POST.get('name')
         description = request.POST.get('description')
         price = request.POST.get('price')
-        vegeterian = request.POST.get('vegeterian') == 'on'
+        vegeterian = request.POST.get('is_veg') == 'on' # checkbox input name in form is "is_veg"
         picture = request.POST.get('picture')
         
         try:
