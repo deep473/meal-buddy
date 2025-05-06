@@ -19,6 +19,6 @@ class Item(models.Model):
     name = models.CharField(max_length = 20)
     description = models.CharField(max_length = 200)
     price = models.FloatField()
-    vegeterian = models.BooleanField(default=True)
+    vegeterian = models.BooleanField(default=False)
     picture = models.URLField(max_length = 400, default='https://www.indiafilings.com/learn/wp-content/uploads/2024/08/How-to-Start-Food-Business.jpg')
     

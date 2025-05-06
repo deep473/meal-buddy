@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Customer, Restaurant
+from .models import Customer, Restaurant, Item
 
 # Create your views here.
 def index(request):
@@ -106,12 +106,33 @@ def delete_restaurant(request, restaurant_id):
     restaurantList = Restaurant.objects.all()
     return render(request, 'delivery/show_restaurants.html',{"restaurantList" : restaurantList})
 
+
 def open_update_menu(request, restaurant_id):
     restaurant = Restaurant.objects.get(id = restaurant_id)
-    
-    return render(request, 'delivery/update_menu.html',{"restaurant" : restaurant})
 
+    itemList = Item.objects.all()
+    return render(request, 'delivery/update_menu.html',{"itemList" : itemList, "restaurant" : restaurant})
+    
 def update_menu(request, restaurant_id):
     restaurant = Restaurant.objects.get(id = restaurant_id)
     
-    return HttpResponse("received")
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        description = request.POST.get('description')
+        price = request.POST.get('price')
+        vegeterian = request.POST.get('vegeterian') == 'on'
+        picture = request.POST.get('picture')
+        
+        try:
+            Item.objects.get(name = name)
+            return HttpResponse("Duplicate item!")
+        except:
+            Item.objects.create(
+                restaurant = restaurant,
+                name = name,
+                description = description,
+                price = price,
+                vegeterian = vegeterian,
+                picture = picture,
+            )
+    return render(request, 'delivery/admin_home.html')
