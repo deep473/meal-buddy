@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <h3>Welcome {{username}}!</h3>
     <!-- show current menu -->
     <table border="1">
         <thead>
@@ -14,7 +15,8 @@
                 <th>Picture</th>
                 <th>Description</th>
                 <th>Price</th>
-                <th>Is veg/</th>
+                <th>Is veg?</th>
+                <th>Operation</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +29,11 @@
                     <td>{{ item.description }}</td>
                     <td>{{ item.price }}</td>
                     <td>{{ item.vegeterian }}</td>
+                    <td>
+                        <a href="{% url 'add_to_cart' item.id username %}">
+                            Add to cart
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

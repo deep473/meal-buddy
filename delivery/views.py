@@ -46,7 +46,7 @@ def signin(request):
             return render(request, 'delivery/admin_home.html')
         else:
             restaurantList = Restaurant.objects.all()
-            return render(request, 'delivery/customer_home.html',{"restaurantList" : restaurantList})
+            return render(request, 'delivery/customer_home.html',{"restaurantList" : restaurantList, "username" : username})
 
     except Customer.DoesNotExist:
         return render(request, 'delivery/fail.html')
@@ -138,8 +138,11 @@ def update_menu(request, restaurant_id):
             )
     return render(request, 'delivery/admin_home.html')
 
-def view_menu(request, restaurant_id):
+def view_menu(request, restaurant_id, username):
     restaurant = Restaurant.objects.get(id = restaurant_id)
     itemList = restaurant.items.all()
     #itemList = Item.objects.all()
-    return render(request, 'delivery/customer_menu.html',{"itemList" : itemList, "restaurant" : restaurant})
+    return render(request, 'delivery/customer_menu.html',{"itemList" : itemList, "restaurant" : restaurant, "username":username})
+
+def add_to_cart(request, item_id, username):
+    return HttpResponse('added to cart')

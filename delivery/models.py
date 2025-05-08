@@ -21,4 +21,11 @@ class Item(models.Model):
     price = models.FloatField()
     vegeterian = models.BooleanField(default=False)
     picture = models.URLField(max_length = 400, default='https://www.indiafilings.com/learn/wp-content/uploads/2024/08/How-to-Start-Food-Business.jpg')
+
+class Cart(models.Model):
+    customer = models.ForeignKey(Customer, on_delete = models.CASCADE, related_name = "cart")
+    items = models.ManyToManyField("Item", related_name = "carts")
+
+    def total_price(self):
+        return sum(item.price for item in self.items.all())
     
