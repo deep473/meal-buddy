@@ -45,7 +45,8 @@ def signin(request):
         if username == 'admin':
             return render(request, 'delivery/admin_home.html')
         else:
-            return render(request, 'delivery/customer_home.html')
+            restaurantList = Restaurant.objects.all()
+            return render(request, 'delivery/customer_home.html',{"restaurantList" : restaurantList})
 
     except Customer.DoesNotExist:
         return render(request, 'delivery/fail.html')
@@ -109,8 +110,8 @@ def delete_restaurant(request, restaurant_id):
 
 def open_update_menu(request, restaurant_id):
     restaurant = Restaurant.objects.get(id = restaurant_id)
-
-    itemList = Item.objects.all()
+    itemList = restaurant.items.all()
+    #itemList = Item.objects.all()
     return render(request, 'delivery/update_menu.html',{"itemList" : itemList, "restaurant" : restaurant})
     
 def update_menu(request, restaurant_id):
@@ -136,3 +137,9 @@ def update_menu(request, restaurant_id):
                 picture = picture,
             )
     return render(request, 'delivery/admin_home.html')
+
+def view_menu(request, restaurant_id):
+    restaurant = Restaurant.objects.get(id = restaurant_id)
+    itemList = restaurant.items.all()
+    #itemList = Item.objects.all()
+    return render(request, 'delivery/customer_menu.html',{"itemList" : itemList, "restaurant" : restaurant})
