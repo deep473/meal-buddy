@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>Order Summary</title>
+</head>
+<body>
+    <h1>Thank you for your order, {{ username }}!</h1>
+
+
+    <h2>Delivery Address</h2>
+    <p>{{ customer.address }}</p>
+
+    <p>Your order will be delivered to this location shortly. Thank you for choosing Meal Mate!</p>
+
+    {% if cart_items %}
+        <a href="{% url 'customer_menu' cart_items.0.restaurant.id username %}">Back to Restaurants</a>
+    {% else %}
+        <a href="/">Back to Home</a>
+    {% endif %}
+</body>
+</html>
